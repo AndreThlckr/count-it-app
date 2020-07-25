@@ -8,6 +8,7 @@ import com.andrethlckr.countit.BR
 import com.andrethlckr.countit.R
 import com.andrethlckr.countit.domain.models.CashFlow
 import com.andrethlckr.countit.presentation.adapters.recycleradapter.RecyclerItem
+import com.andrethlckr.countit.presentation.adapters.recycleradapter.comparators.CashFlowComparator
 import java.util.*
 
 class MainViewModel @ViewModelInject constructor(): ViewModel() {
@@ -19,13 +20,13 @@ class MainViewModel @ViewModelInject constructor(): ViewModel() {
         loadData()
     }
 
-    fun loadData() {
+    private fun loadData() {
         val item = CashFlow(
-            30F,
-            GregorianCalendar(2020, 6, 15),
-            "Lanchonete",
-            "Comida",
-            "Lanches"
+            value = 30F,
+            date = GregorianCalendar(2020, 6, 15),
+            origin = "Lanchonete",
+            category = "Comida",
+            description = "Lanches"
         )
 
         val list = listOf(item)
@@ -36,6 +37,6 @@ class MainViewModel @ViewModelInject constructor(): ViewModel() {
     private fun CashFlow.toRecyclerItem() = RecyclerItem(
         data = this,
         variableId = BR.cashFlow,
-        layoutId = R.layout.cash_flow_item
-    )
+        layoutId = R.layout.cash_flow_item,
+        comparator = CashFlowComparator(this))
 }

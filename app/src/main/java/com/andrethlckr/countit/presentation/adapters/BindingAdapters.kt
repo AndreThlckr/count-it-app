@@ -4,8 +4,8 @@ import android.text.format.DateUtils
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.andrethlckr.countit.presentation.adapters.recycleradapter.RecyclerAdapter
 import com.andrethlckr.countit.presentation.adapters.recycleradapter.RecyclerItem
-import com.andrethlckr.countit.presentation.adapters.recycleradapter.RecyclerViewAdapter
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 
@@ -16,14 +16,14 @@ fun setRecyclerViewItems(
     recyclerView: RecyclerView,
     items: List<RecyclerItem>?
 ) {
-    var adapter = (recyclerView.adapter as? RecyclerViewAdapter)
+    var adapter = (recyclerView.adapter as? RecyclerAdapter)
 
     if (adapter == null) {
-        adapter = RecyclerViewAdapter()
+        adapter = RecyclerAdapter()
         recyclerView.adapter = adapter
     }
 
-    adapter.updateData(items.orEmpty())
+    adapter.submitList(items.orEmpty())
 }
 
 @BindingAdapter("app:error")

@@ -4,29 +4,23 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.andrethlckr.countit.presentation.adapters.recycleradapter.comparators.RecyclerItemComparator
 
 /*
 * Universal recycler adapter for showing items in a list.
 * You can adapt any object to a RecyclerItem like this:
 *
-* private fun User.toRecyclerItem() = RecyclerItem(
-*    data = this,
-*    variableId = BR.user,
-*    layoutId = R.layout.item_user
-*)
-*
 * Thanks to Anton Stulnev, in https://medium.com/@fraggjkee/recyclerview-2020-a-modern-way-of-dealing-with-lists-in-android-using-databinding-d97abf5fb55f
+* and https://medium.com/@fraggjkee/recyclerview-2020-a-modern-way-of-dealing-with-lists-in-android-using-databinding-part-2-df69f0a741f8
 * */
-class RecyclerViewAdapter : RecyclerView.Adapter<BindingViewHolder>() {
+class RecyclerAdapter : ListAdapter<RecyclerItem, BindingViewHolder>(DiffCallback()) {
 
-    private val items = mutableListOf<RecyclerItem>()
-
-    override fun getItemCount(): Int {
-        return items.size
-    }
-
-    override fun getItemViewType(position: Int): Int {
+    override fun getItemViewType(
+        position: Int
+    ): Int {
         return getItem(position).layoutId
     }
 
@@ -46,18 +40,24 @@ class RecyclerViewAdapter : RecyclerView.Adapter<BindingViewHolder>() {
         getItem(position).bind(holder.binding)
         holder.binding.executePendingBindings()
     }
-
-    fun updateData(newItems: List<RecyclerItem>) {
-        this.items.clear()
-        this.items.addAll(newItems)
-        notifyDataSetChanged()
-    }
-
-    private fun getItem(position: Int): RecyclerItem {
-        return items[position]
-    }
 }
 
 class BindingViewHolder(
     val binding: ViewDataBinding
 ) : RecyclerView.ViewHolder(binding.root)
+
+private class DiffCallback : DiffUtil.ItemCallback<RecyclerItem>() {
+    override fun areItemsTheSame(
+        oldItem: RecyclerItem,
+        newItem: RecyclerItem
+    ): Boolean {
+        return oldItem.comparator.isSameItem(newItem)
+    }
+
+    override fun areContentsTheSame(
+        oldItem: RecyclerItem,
+        newItem: RecyclerItem
+    ): Boolean {
+        return oldItem.comparator.isSameContent(newItem)
+    }
+}
