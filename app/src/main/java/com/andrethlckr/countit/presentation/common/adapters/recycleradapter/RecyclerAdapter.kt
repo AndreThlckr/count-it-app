@@ -1,4 +1,4 @@
-package com.andrethlckr.countit.presentation.adapters.recycleradapter
+package com.andrethlckr.countit.presentation.common.adapters.recycleradapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,6 @@ import androidx.databinding.ViewDataBinding
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.andrethlckr.countit.presentation.adapters.recycleradapter.comparators.RecyclerItemComparator
 
 /*
 * Universal recycler adapter for showing items in a list.

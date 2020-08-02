@@ -1,11 +1,11 @@
-package com.andrethlckr.countit.presentation.adapters
+package com.andrethlckr.countit.presentation.common.adapters
 
 import android.text.format.DateUtils
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.andrethlckr.countit.presentation.adapters.recycleradapter.RecyclerAdapter
-import com.andrethlckr.countit.presentation.adapters.recycleradapter.RecyclerItem
+import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerAdapter
+import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItem
 import com.google.android.material.textfield.TextInputLayout
 import java.util.*
 

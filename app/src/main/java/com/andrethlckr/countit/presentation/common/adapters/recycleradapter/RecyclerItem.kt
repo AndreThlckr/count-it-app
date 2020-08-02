@@ -1,8 +1,7 @@
-package com.andrethlckr.countit.presentation.adapters.recycleradapter
+package com.andrethlckr.countit.presentation.common.adapters.recycleradapter
 
 import androidx.annotation.LayoutRes
 import androidx.databinding.ViewDataBinding
-import com.andrethlckr.countit.presentation.adapters.recycleradapter.comparators.RecyclerItemComparator
 
 class RecyclerItem(
     val data: Any,
