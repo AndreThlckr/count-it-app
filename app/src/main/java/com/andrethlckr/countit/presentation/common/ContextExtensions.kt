@@ -1,4 +1,4 @@
-package com.andrethlckr.countit.presentation
+package com.andrethlckr.countit.presentation.common
 
 import android.content.Context
 import android.content.res.Resources
