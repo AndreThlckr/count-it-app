@@ -45,7 +45,7 @@ android {
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.0'
+    implementation 'androidx.core:core-ktx:1.3.1'
 
     //AppCompat dependency
     implementation 'androidx.appcompat:appcompat:1.1.0'
@@ -72,7 +72,14 @@ dependencies {
     androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
 
     //Unit tests
-    testImplementation 'junit:junit:4.13'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.3.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.3.1'
+
+    //MockK
+    testImplementation "io.mockk:mockk:1.10.0"
+
+    //Kotest
+    testImplementation 'io.kotest:kotest-assertions-core-jvm:4.1.3'
 
     //Android tests
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
@@ -82,7 +89,7 @@ dependencies {
     implementation "com.google.dagger:hilt-android:$hilt_version"
     kapt "com.google.dagger:hilt-android-compiler:$hilt_version"
 
-    def hilt_jetpack_version = "1.0.0-alpha01"
+    def hilt_jetpack_version = "1.0.0-alpha02"
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:$hilt_jetpack_version"
     kapt "androidx.hilt:hilt-compiler:$hilt_jetpack_version"
 
@@ -93,7 +100,7 @@ dependencies {
     implementation "androidx.cardview:cardview:1.0.0"
 
     //Material dependencies
-    implementation "com.google.android.material:material:1.3.0-alpha01"
+    implementation "com.google.android.material:material:1.3.0-alpha02"
 
     //Firebase dependencies
     implementation 'com.google.firebase:firebase-analytics:17.4.4'
