@@ -1,4 +1,4 @@
-package com.andrethlckr.countit.domain.models
+package com.andrethlckr.countit.domain.cashflow
 
 import java.util.*
 

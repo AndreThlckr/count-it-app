@@ -1,4 +1,4 @@
-package com.andrethlckr.countit.presentation.main
+package com.andrethlckr.countit.presentation.cashflow.cashflowlist
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
@@ -6,12 +6,12 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.andrethlckr.countit.BR
 import com.andrethlckr.countit.R
-import com.andrethlckr.countit.domain.models.CashFlow
-import com.andrethlckr.countit.presentation.adapters.recycleradapter.RecyclerItem
-import com.andrethlckr.countit.presentation.adapters.recycleradapter.comparators.CashFlowComparator
+import com.andrethlckr.countit.domain.cashflow.CashFlow
+import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItem
+import com.andrethlckr.countit.presentation.cashflow.CashFlowComparator
 import java.util.*
 
-class MainViewModel @ViewModelInject constructor(): ViewModel() {
+class CashFlowListViewModel @ViewModelInject constructor(): ViewModel() {
     private val _data = MutableLiveData<List<RecyclerItem>>()
     val data: LiveData<List<RecyclerItem>>
         get() = _data
@@ -38,5 +38,8 @@ class MainViewModel @ViewModelInject constructor(): ViewModel() {
         data = this,
         variableId = BR.cashFlow,
         layoutId = R.layout.cash_flow_item,
-        comparator = CashFlowComparator(this))
+        comparator = CashFlowComparator(
+            this
+        )
+    )
 }

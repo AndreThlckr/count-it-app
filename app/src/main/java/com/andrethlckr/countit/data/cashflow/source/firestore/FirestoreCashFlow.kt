@@ -1,4 +1,4 @@
-package com.andrethlckr.countit.data.source.cashflow.firestore
+package com.andrethlckr.countit.data.cashflow.source.firestore
 
 import com.google.firebase.firestore.DocumentId
 import java.util.*

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.andrethlckr.countit.presentation.main.MainFragment"
+        android:name="com.andrethlckr.countit.presentation.cashflow.cashflowlist.CashFlowListFragment"
         android:label="main_fragment"
-        tools:layout="@layout/main_fragment" />
+        tools:layout="@layout/cash_flow_list_fragment" />
 </navigation>
