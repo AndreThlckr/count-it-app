@@ -3,7 +3,7 @@ package com.andrethlckr.countit.domain.common.resource
 /**
  * Generic class for defining an app failure.
  *
- * Generic failures should be avoided.
+ * Generic failures should be avoided AT ALL COSTS, since they aren't expected by use cases.
  */
 sealed class DomainFailure {
     object NetworkFailure : DomainFailure()
