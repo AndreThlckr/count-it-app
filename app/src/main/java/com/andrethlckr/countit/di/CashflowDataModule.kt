@@ -35,8 +35,4 @@ abstract class CashflowDataModule {
     abstract fun bindCashFlowRepository(
         cashFlowRepositoryImpl: CashFlowRepositoryImpl
     ): CashFlowRepository
-
-    @Provides
-    @Singleton
-    fun provideIoDispatcher() = Dispatchers.IO
 }
