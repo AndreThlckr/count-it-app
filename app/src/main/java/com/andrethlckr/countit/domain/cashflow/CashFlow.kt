@@ -1,6 +1,7 @@
 package com.andrethlckr.countit.domain.cashflow
 
-import java.util.*
+import java.util.GregorianCalendar
+import java.util.UUID
 
 class CashFlow(
     val id: String = UUID.randomUUID().toString(),
@@ -9,7 +10,7 @@ class CashFlow(
     val origin: String,
     val category: String = "",
     val description: String = ""
-){
+) {
     val formattedValue: String
         get() = "R$$value"
 

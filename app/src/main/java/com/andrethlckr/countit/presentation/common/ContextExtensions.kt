@@ -5,7 +5,11 @@ import android.content.res.Resources
 import android.graphics.drawable.Drawable
 import android.view.View
 import android.widget.Toast
-import androidx.annotation.*
+import androidx.annotation.ColorInt
+import androidx.annotation.ColorRes
+import androidx.annotation.Dimension
+import androidx.annotation.DrawableRes
+import androidx.annotation.StringRes
 import androidx.appcompat.content.res.AppCompatResources
 import androidx.core.content.ContextCompat
 
@@ -13,7 +17,8 @@ fun Context.toast(@StringRes resource: Int, duration: Int = Toast.LENGTH_SHORT) 
     Toast.makeText(this, resource, duration).show()
 }
 
-@ColorInt fun Context.getColorCompat(@ColorRes colorRes: Int): Int {
+@ColorInt
+fun Context.getColorCompat(@ColorRes colorRes: Int): Int {
     return ContextCompat.getColor(this, colorRes)
 }
 
@@ -37,7 +42,5 @@ fun View.isVisible(isVisible: Boolean) {
     if (isVisible) visible() else gone()
 }
 
-@Dimension(unit = Dimension.PX) fun Int.dpToPx() : Int =
+@Dimension(unit = Dimension.PX) fun Int.dpToPx(): Int =
     (this * Resources.getSystem().displayMetrics.density).toInt()
-
-

@@ -60,6 +60,4 @@ class ExampleUnitTest {
         @Test
         fun `should show error if`() {}
     }
-
-
 }

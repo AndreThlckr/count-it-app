@@ -7,11 +7,11 @@ import androidx.lifecycle.ViewModel
 import com.andrethlckr.countit.BR
 import com.andrethlckr.countit.R
 import com.andrethlckr.countit.domain.cashflow.CashFlow
-import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItem
 import com.andrethlckr.countit.presentation.cashflow.CashFlowComparator
-import java.util.*
+import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItem
+import java.util.GregorianCalendar
 
-class CashFlowListViewModel @ViewModelInject constructor(): ViewModel() {
+class CashFlowListViewModel @ViewModelInject constructor() : ViewModel() {
     private val _data = MutableLiveData<List<RecyclerItem>>()
     val data: LiveData<List<RecyclerItem>>
         get() = _data

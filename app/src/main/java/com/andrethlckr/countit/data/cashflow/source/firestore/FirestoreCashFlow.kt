@@ -1,7 +1,7 @@
 package com.andrethlckr.countit.data.cashflow.source.firestore
 
 import com.google.firebase.firestore.DocumentId
-import java.util.*
+import java.util.GregorianCalendar
 
 data class FirestoreCashFlow(
     @DocumentId val id: String,

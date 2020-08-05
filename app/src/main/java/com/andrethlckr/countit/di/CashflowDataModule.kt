@@ -10,10 +10,8 @@ import com.andrethlckr.countit.domain.cashflow.CashFlowRepository
 import com.andrethlckr.countit.domain.common.mapper.AbstractMapper
 import dagger.Binds
 import dagger.Module
-import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ApplicationComponent
-import kotlinx.coroutines.Dispatchers
 import javax.inject.Singleton
 
 @Module

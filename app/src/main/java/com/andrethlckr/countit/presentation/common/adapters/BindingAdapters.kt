@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerAdapter
 import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItem
 import com.google.android.material.textfield.TextInputLayout
-import java.util.*
+import java.util.GregorianCalendar
 
 infix fun Int.with(x: Int) = this.or(x)
 
@@ -33,14 +33,14 @@ fun setError(
 ) {
     val currentError = textInputLayout.error.toString()
 
-    if(resId == null) {
+    if (resId == null) {
         if (currentError.isEmpty()) return
 
         textInputLayout.error = null
         textInputLayout.isErrorEnabled = false
     } else {
         val newError = textInputLayout.context.getString(resId)
-        if(newError == currentError) return
+        if (newError == currentError) return
         textInputLayout.error = newError
     }
 }
@@ -54,7 +54,7 @@ fun setText(
         textView.context,
         date.timeInMillis,
         DateUtils.FORMAT_SHOW_DATE with
-                DateUtils.FORMAT_NUMERIC_DATE with
-                DateUtils.FORMAT_SHOW_YEAR
+            DateUtils.FORMAT_NUMERIC_DATE with
+            DateUtils.FORMAT_SHOW_YEAR
     )
 }

@@ -1,7 +1,7 @@
 package com.andrethlckr.countit.presentation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.andrethlckr.countit.R
 import com.andrethlckr.countit.databinding.MainActivityBinding

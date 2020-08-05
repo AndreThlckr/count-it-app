@@ -1,7 +1,7 @@
 package com.andrethlckr.countit.data
 
-import com.andrethlckr.countit.domain.common.resource.ErrorHandler
 import com.andrethlckr.countit.domain.common.resource.DomainFailure
+import com.andrethlckr.countit.domain.common.resource.ErrorHandler
 import java.io.IOException
 import javax.inject.Inject
 
@@ -29,7 +29,7 @@ class ErrorHandlerImpl @Inject constructor() : ErrorHandler {
      *
      */
     override fun getFailure(throwable: Throwable): DomainFailure {
-        return when(throwable) {
+        return when (throwable) {
             is IOException -> DomainFailure.NetworkFailure
             else -> DomainFailure.GenericFailure(0, throwable.message.orEmpty())
         }

@@ -1,7 +1,7 @@
 package com.andrethlckr.countit.data.cashflow.source.firestore
 
-import com.andrethlckr.countit.domain.common.mapper.AbstractMapper
 import com.andrethlckr.countit.domain.cashflow.CashFlow
+import com.andrethlckr.countit.domain.common.mapper.AbstractMapper
 import javax.inject.Inject
 
 class FirestoreCashFlowMapper @Inject constructor() : AbstractMapper<CashFlow, FirestoreCashFlow>() {

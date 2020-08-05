@@ -5,7 +5,7 @@ import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.Recy
 import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItemComparator
 
 class CashFlowComparator(
-    val  data: CashFlow
+    val data: CashFlow
 ) : RecyclerItemComparator {
     override fun isSameItem(other: RecyclerItem): Boolean {
         if (data === other.data) return true

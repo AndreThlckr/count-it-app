@@ -11,16 +11,15 @@ class FirestoreCashFlowMapperTest {
     }
 
     init {
-        //Poderia usar aqui, também
+        // Poderia usar aqui, também
     }
 
     @BeforeEach
     fun resetFields() {
-        //reset fields here
+        // reset fields here
     }
 
     @Test
     fun map() {
-
     }
 }

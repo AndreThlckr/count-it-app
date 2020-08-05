@@ -1,15 +1,19 @@
 package com.andrethlckr.countit.data.cashflow
 
-import com.andrethlckr.countit.domain.common.resource.Resource
 import com.andrethlckr.countit.data.cashflow.source.firestore.FirestoreCashFlow
 import com.andrethlckr.countit.data.cashflow.source.firestore.FirestoreCashFlowDataSource
 import com.andrethlckr.countit.domain.cashflow.CashFlow
 import com.andrethlckr.countit.domain.cashflow.CashFlowRepository
 import com.andrethlckr.countit.domain.common.mapper.AbstractMapper
 import com.andrethlckr.countit.domain.common.resource.ErrorHandler
+import com.andrethlckr.countit.domain.common.resource.Resource
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.ExperimentalCoroutinesApi
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.conflate
+import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class CashFlowRepositoryImpl @Inject constructor(
@@ -23,14 +27,16 @@ class CashFlowRepositoryImpl @Inject constructor(
     override fun getCashFlows(): Flow<Resource<List<CashFlow>>> {
         return firestoreDataSource.getCashFlows().map { list ->
             Resource.Success(list.toCashFlows())
-        }.catch {cause: Throwable ->
+        }.catch { cause ->
             Resource.Error(
                 errorHandler.getFailure(cause)
             )
-        }.flowOn(dispatcher)
+        }
+            .flowOn(dispatcher)
+            .conflate()
     }
 
-    private fun List<FirestoreCashFlow>.toCashFlows() : List<CashFlow> {
+    private fun List<FirestoreCashFlow>.toCashFlows(): List<CashFlow> {
         return mapper.mapToEntity(this)
     }
 }
