@@ -7,8 +7,9 @@ import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.flow
+import javax.inject.Inject
 
-class GetCashFlowUseCaseImpl(
+class GetCashFlowUseCaseImpl @Inject constructor(
     private val cashFlowRepository: CashFlowRepository
 ) : GetCashFlowsUseCase {
     @ExperimentalCoroutinesApi
@@ -20,7 +21,6 @@ class GetCashFlowUseCaseImpl(
 
     private fun Resource<List<CashFlow>>.toResult() =
         when (this) {
-            is Resource.Loading -> GetCashFlowsResult.Loading
             is Resource.Success -> GetCashFlowsResult.Success(this.data)
             is Resource.Error -> this.toFailure()
         }

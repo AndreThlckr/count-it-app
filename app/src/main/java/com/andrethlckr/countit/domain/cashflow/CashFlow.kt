@@ -3,9 +3,9 @@ package com.andrethlckr.countit.domain.cashflow
 import java.util.GregorianCalendar
 import java.util.UUID
 
-class CashFlow(
+data class CashFlow(
     val id: String = UUID.randomUUID().toString(),
-    val value: Float,
+    val value: Double,
     val date: GregorianCalendar,
     val origin: String,
     val category: String = "",

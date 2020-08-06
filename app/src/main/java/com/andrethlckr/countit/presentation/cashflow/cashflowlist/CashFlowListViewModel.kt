@@ -4,35 +4,30 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.liveData
 import com.andrethlckr.countit.BR
 import com.andrethlckr.countit.R
 import com.andrethlckr.countit.domain.cashflow.CashFlow
+import com.andrethlckr.countit.domain.usecase.getcashflows.GetCashFlowsResult
+import com.andrethlckr.countit.domain.usecase.getcashflows.GetCashFlowsUseCase
 import com.andrethlckr.countit.presentation.cashflow.CashFlowComparator
 import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItem
-import java.util.GregorianCalendar
+import kotlinx.coroutines.flow.collect
 
-class CashFlowListViewModel @ViewModelInject constructor() : ViewModel() {
-    private val _data = MutableLiveData<List<RecyclerItem>>()
-    val data: LiveData<List<RecyclerItem>>
-        get() = _data
-
-    init {
-        loadData()
+class CashFlowListViewModel @ViewModelInject constructor(
+    private val getCashFlowsUseCase: GetCashFlowsUseCase
+) : ViewModel() {
+    val cashflows = liveData {
+        getCashFlowsUseCase.invoke().collect { result ->
+            when (result) {
+                is GetCashFlowsResult.Success -> this.emit(result.cashFlows.toRecyclerItems())
+                is GetCashFlowsResult.Failure.Unexpected -> _shouldShowError.postValue(R.string.unexpected_error)
+            }
+        }
     }
 
-    private fun loadData() {
-        val item = CashFlow(
-            value = 30F,
-            date = GregorianCalendar(2020, 6, 15),
-            origin = "Lanchonete",
-            category = "Comida",
-            description = "Lanches"
-        )
-
-        val list = listOf(item)
-
-        _data.value = list.map { it.toRecyclerItem() }
-    }
+    private val _shouldShowError = MutableLiveData<Int>()
+    val shouldShowError: LiveData<Int> = _shouldShowError
 
     private fun CashFlow.toRecyclerItem() = RecyclerItem(
         data = this,
@@ -42,4 +37,6 @@ class CashFlowListViewModel @ViewModelInject constructor() : ViewModel() {
             this
         )
     )
+
+    private fun List<CashFlow>.toRecyclerItems() = this.map { it.toRecyclerItem() }
 }

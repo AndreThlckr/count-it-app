@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">Count it</string>
+    <string name="unexpected_error">Um erro terrível aconteceu! Corra por sua vida!</string>
 </resources>

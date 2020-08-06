@@ -5,7 +5,7 @@ import java.util.GregorianCalendar
 
 data class FirestoreCashFlow(
     @DocumentId val id: String,
-    val value: Float,
+    val value: Double,
     val date: GregorianCalendar,
     val origin: String,
     val category: String,

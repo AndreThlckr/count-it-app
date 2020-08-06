@@ -1,5 +1,6 @@
 package com.andrethlckr.countit.di
 
+import com.andrethlckr.countit.data.ErrorHandlerImpl
 import com.andrethlckr.countit.data.cashflow.CashFlowRepositoryImpl
 import com.andrethlckr.countit.data.cashflow.source.firestore.FirestoreCashFlow
 import com.andrethlckr.countit.data.cashflow.source.firestore.FirestoreCashFlowDataSource
@@ -8,6 +9,7 @@ import com.andrethlckr.countit.data.cashflow.source.firestore.FirestoreCashFlowM
 import com.andrethlckr.countit.domain.cashflow.CashFlow
 import com.andrethlckr.countit.domain.cashflow.CashFlowRepository
 import com.andrethlckr.countit.domain.common.mapper.AbstractMapper
+import com.andrethlckr.countit.domain.common.resource.ErrorHandler
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,7 +18,7 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ApplicationComponent::class)
-abstract class CashflowDataModule {
+abstract class CashFlowDataModule {
 
     @Binds
     abstract fun bindFirestoreCashFlowMapper(
@@ -33,4 +35,9 @@ abstract class CashflowDataModule {
     abstract fun bindCashFlowRepository(
         cashFlowRepositoryImpl: CashFlowRepositoryImpl
     ): CashFlowRepository
+
+    @Binds
+    abstract fun bindErrorHandler(
+        errorHandler: ErrorHandlerImpl
+    ): ErrorHandler
 }
