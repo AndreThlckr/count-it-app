@@ -4,9 +4,8 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
-import androidx.recyclerview.widget.RecyclerView
+import com.andrethlckr.countit.presentation.common.adapters.cashflowadapter.BindingViewHolder
 
 /*
 * Universal recycler adapter for showing items in a list.
@@ -38,25 +37,5 @@ class RecyclerAdapter : ListAdapter<RecyclerItem, BindingViewHolder>(DiffCallbac
     ) {
         getItem(position).bind(holder.binding)
         holder.binding.executePendingBindings()
-    }
-}
-
-class BindingViewHolder(
-    val binding: ViewDataBinding
-) : RecyclerView.ViewHolder(binding.root)
-
-private class DiffCallback : DiffUtil.ItemCallback<RecyclerItem>() {
-    override fun areItemsTheSame(
-        oldItem: RecyclerItem,
-        newItem: RecyclerItem
-    ): Boolean {
-        return oldItem.comparator.isSameItem(newItem)
-    }
-
-    override fun areContentsTheSame(
-        oldItem: RecyclerItem,
-        newItem: RecyclerItem
-    ): Boolean {
-        return oldItem.comparator.isSameContent(newItem)
     }
 }

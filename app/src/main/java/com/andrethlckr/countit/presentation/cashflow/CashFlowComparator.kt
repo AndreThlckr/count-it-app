@@ -2,7 +2,6 @@ package com.andrethlckr.countit.presentation.cashflow
 
 import com.andrethlckr.countit.domain.cashflow.CashFlow
 import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItem
-import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItemComparator
 
 class CashFlowComparator(
     val data: CashFlow

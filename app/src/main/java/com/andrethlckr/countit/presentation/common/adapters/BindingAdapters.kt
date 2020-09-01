@@ -1,13 +1,17 @@
 package com.andrethlckr.countit.presentation.common.adapters
 
 import android.text.format.DateUtils
+import android.view.View
 import android.widget.TextView
+import androidx.annotation.ColorRes
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerAdapter
 import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItem
+import com.andrethlckr.countit.presentation.common.getColorCompat
 import com.google.android.material.textfield.TextInputLayout
-import java.util.GregorianCalendar
+import java.time.LocalDate
+import java.time.ZoneOffset
 
 infix fun Int.with(x: Int) = this.or(x)
 
@@ -48,13 +52,28 @@ fun setError(
 @BindingAdapter("app:text")
 fun setText(
     textView: TextView,
-    date: GregorianCalendar
+    date: LocalDate
 ) {
     textView.text = DateUtils.formatDateTime(
         textView.context,
-        date.timeInMillis,
+        date.atStartOfDay(ZoneOffset.UTC).toEpochSecond(),
         DateUtils.FORMAT_SHOW_DATE with
             DateUtils.FORMAT_NUMERIC_DATE with
             DateUtils.FORMAT_SHOW_YEAR
     )
+}
+
+@BindingAdapter("app:textColorRes")
+fun setText(
+    textView: TextView,
+    @ColorRes color: Int
+) {
+    textView.setTextColor(textView.context.getColorCompat(color))
+}
+
+@BindingAdapter("app:onClick")
+fun onClick(view: View, onClick: () -> Unit) {
+    view.setOnClickListener {
+        onClick()
+    }
 }

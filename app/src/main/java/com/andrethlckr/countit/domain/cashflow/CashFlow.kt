@@ -1,18 +1,20 @@
 package com.andrethlckr.countit.domain.cashflow
 
-import java.util.GregorianCalendar
+import java.text.NumberFormat
+import java.time.LocalDate
 import java.util.UUID
+import kotlin.math.absoluteValue
 
 data class CashFlow(
     val id: String = UUID.randomUUID().toString(),
     val value: Double,
-    val date: GregorianCalendar,
+    val date: LocalDate,
     val origin: String,
     val category: String = "",
     val description: String = ""
 ) {
     val formattedValue: String
-        get() = "R$$value"
+        get() = NumberFormat.getCurrencyInstance().format(value.absoluteValue)
 
     fun isExpense() = value < 0
 

@@ -11,6 +11,7 @@ import com.andrethlckr.countit.domain.cashflow.CashFlow
 import com.andrethlckr.countit.domain.usecase.getcashflows.GetCashFlowsResult
 import com.andrethlckr.countit.domain.usecase.getcashflows.GetCashFlowsUseCase
 import com.andrethlckr.countit.presentation.cashflow.CashFlowComparator
+import com.andrethlckr.countit.presentation.common.adapters.cashflowadapter.CashFlowItemViewModel
 import com.andrethlckr.countit.presentation.common.adapters.recycleradapter.RecyclerItem
 import kotlinx.coroutines.flow.collect
 
@@ -20,11 +21,14 @@ class CashFlowListViewModel @ViewModelInject constructor(
     val cashflows = liveData {
         getCashFlowsUseCase.invoke().collect { result ->
             when (result) {
-                is GetCashFlowsResult.Success -> this.emit(result.cashFlows.toRecyclerItems())
+                is GetCashFlowsResult.Success -> this.emit(result.cashFlows.toCashFlowItemViewModel())
                 is GetCashFlowsResult.Failure.Unexpected -> _shouldShowError.postValue(R.string.unexpected_error)
             }
         }
     }
+
+    private val _shouldShowSnackBar = MutableLiveData<String>()
+    val shouldShowSnackBar: LiveData<String> = _shouldShowSnackBar
 
     private val _shouldShowError = MutableLiveData<Int>()
     val shouldShowError: LiveData<Int> = _shouldShowError
@@ -39,4 +43,10 @@ class CashFlowListViewModel @ViewModelInject constructor(
     )
 
     private fun List<CashFlow>.toRecyclerItems() = this.map { it.toRecyclerItem() }
+
+    private fun List<CashFlow>.toCashFlowItemViewModel() = this.map {
+        CashFlowItemViewModel(it) { cashFlow ->
+            _shouldShowSnackBar.postValue(cashFlow.description)
+        }
+    }
 }

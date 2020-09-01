@@ -3,19 +3,22 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="androidx.core.content.ContextCompat"/>
         <variable
             name="cashFlow"
-            type="com.andrethlckr.countit.domain.cashflow.CashFlow" />
+            type="com.andrethlckr.countit.presentation.common.adapters.cashflowadapter.CashFlowItemViewModel" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="120dp"
-        android:layout_margin="8dp">
+        android:layout_margin="8dp"
+        app:onClick="@{cashFlow::onClick}" >
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="?attr/selectableItemBackground">
 
             <TextView
                 android:id="@+id/value"
@@ -23,8 +26,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="16dp"
-                android:text="@{cashFlow.formattedValue}"
-                android:textColor="@{cashFlow.isExpense() ? @color/colorError : @color/colorSecondary}"
+                android:text="@{cashFlow.displayValue}"
+                app:textColorRes="@{cashFlow.valueColor}"
                 android:textSize="24sp"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/descriptionAndOrigin"
@@ -36,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
-                android:text="@{cashFlow.description + ` / ` + cashFlow.origin}"
+                android:text="@{cashFlow.title}"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Nome do gasto / Local" />
